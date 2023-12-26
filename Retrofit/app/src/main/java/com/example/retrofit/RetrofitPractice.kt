@@ -1,7 +1,6 @@
 package com.example.retrofit
 
 import com.google.gson.annotations.SerializedName
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -39,12 +38,12 @@ interface RetrofitInterface {
     ) : Call<BaseResponse<List<MyData>>>
 
     @GET("/mydata/get/{id}")
-    fun getAllMyDataByGetInCall(
+    fun getMyDataByGetInCall(
         @Path("id") id: Int
     ) : Call<BaseResponse<MyData>>
 
     @POST("/mydata/post")
-    fun getAllMyDataByPostInCall(
+    fun getMyDataByPostInCall(
         @Body myDataRequestBody: MyDataRequestBody
     ) : Call<BaseResponse<MyData>>
 
@@ -56,12 +55,12 @@ interface RetrofitInterface {
     ) : Response<BaseResponse<List<MyData>>>
 
     @GET("/mydata/get/{id}")
-    suspend fun getAllMyDataByGetInResponse(
+    suspend fun getMyDataByGetInResponse(
         @Path("id") id: Int
     ) : Response<BaseResponse<MyData>>
 
     @POST("/mydata/post")
-    suspend fun getAllMyDataByPostInResponse(
+    suspend fun getMyDataByPostInResponse(
         @Body myDataRequestBody: MyDataRequestBody
     ) : Response<BaseResponse<MyData>>
 

@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-        retrofitInterface.getAllMyDataByGetInCall(1)
+        retrofitInterface.getMyDataByGetInCall(1)
             .enqueue(object : Callback<BaseResponse<MyData>> {
                 override fun onResponse(
                     call: Call<BaseResponse<MyData>>,
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-        retrofitInterface.getAllMyDataByPostInCall(MyDataRequestBody(1))
+        retrofitInterface.getMyDataByPostInCall(MyDataRequestBody(1))
             .enqueue(object : Callback<BaseResponse<MyData>> {
                 override fun onResponse(
                     call: Call<BaseResponse<MyData>>,
@@ -93,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            val myDataResponseByGet = retrofitInterface.getAllMyDataByGetInResponse(1)
+            val myDataResponseByGet = retrofitInterface.getMyDataByGetInResponse(1)
             if (myDataResponseByGet.isSuccessful) {
                 Log.d("getAllMyDataByGetInResponse-success", myDataResponseByGet.body()!!.toString())
             } else {
@@ -104,7 +103,7 @@ class MainActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             val myDataResponseByResponse =
-                retrofitInterface.getAllMyDataByPostInResponse(MyDataRequestBody(1))
+                retrofitInterface.getMyDataByPostInResponse(MyDataRequestBody(1))
             if (myDataResponseByResponse.isSuccessful) {
                 Log.d("getAllMyDataByPostInResponse-success", myDataResponseByResponse.body()!!.toString())
             } else {
